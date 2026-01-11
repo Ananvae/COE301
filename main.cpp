@@ -30,7 +30,7 @@ int main() {
 
     cout << "\nYOLO!!!! " << endl;
     // cout << "This program was created by ChatGPT" << endl;
-    cout << "This is nat, the world says hello!" << endl;
+    
     
     return 0;
 }
