@@ -1,5 +1,7 @@
+#include <iostream>
 
 using namespace std;
+
 
 int main() {
     int birthYear;
@@ -27,9 +29,8 @@ int main() {
     }
 
     cout << "\nYOLO!!!! " << endl;
-    cout << "This is nat, the world says hello!";
-
-    return 0;
-
+    // cout << "This program was created by ChatGPT" << endl;
+    cout << "This is nat, the world says hello!" << endl;
     
+    return 0;
 }
