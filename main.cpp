@@ -22,6 +22,8 @@ int main() {
         cout << "Go to school boi" << endl;
     } else if (age < 20) {
         cout << "join the military and help defend your country" << endl;
+    } else if (age <25) {
+        cout << "get a job and start paying taxes" << endl;
     } else if (age < 30) {
         cout << "midlife crisis hit you yet" << endl;
     } else {
@@ -29,8 +31,10 @@ int main() {
     }
 
     cout << "\nYOLO!!!! " << endl;
-    // cout << "This program was created by ChatGPT" << endl;
+    // cout << "This program was created by Ananvita" << endl;
     
-    
+     cout << "This is nat, the world says hello!" << endl;
+
     return 0;
 }
+
