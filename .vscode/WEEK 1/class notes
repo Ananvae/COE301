@@ -1,0 +1,262 @@
+Bjarne stroustrup - founder of cpp 
+
+#include <iostream>
+
+using namespace std;   Access the standard namesapace (std) where all the standard C++ library names are declared
+
+if u dont use the namespace std, u have to prefix std:: before every standard library name like std::cout, std::cin, std::endl
+JUST 2 ALternatives of writing the code
+
+the you have int main()  which is the main function where the execution of the program begins
+
+return 0 indicates that the program ended successfully
+
+cout stands fr character output, used to print text to the console
+
+how does the computer convert C++ code to binary? 
+the compiler translates the C++ code into machine code (binary) that the computer's processor can execute directly. 
+This process involves several steps, including preprocessing, compiling, assembling, and linking.
+G++ is a popular compiler for C++ that performs these steps to create an executable program from C++ source code.
+Clang is another widely used C++ compiler known for its fast compilation times and helpful error messages.
+
+C++ ususally complied the entore program before execution unlike interpreted languages like python where 
+the code is executed line by line
+
+terminal/console/command prompt - interface to interact with the computer using text based commands
+
+terminal commands to compile and run a C++ program using g++ compiler:
+g++ main.cpp -o main    // compile the code
+./main                  // run the compiled program on Unix-like systems (Linux, macOS)
+
+Debugging - process of identifying and fixing errors or bugs in the code to ensure it runs correctly
+
+ex: 
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello * World!" << endl;
+    return 0;
+}
+you might encounter errors like:
+1. Syntax Error: If you forget a semicolon at the end of a statement, the compiler will throw a syntax error.
+2. Runtime Error: If your program tries to divide by zero, it will result in a runtime error.
+3. Logical Error: If your program calculates the wrong age due to incorrect logic, it will produce unexpected results.  
+
+
+Humans represent numbers in decimal (base 10) system, using digits 0-9.
+machines represent numbers in binary (base 2) system, using only digits 0 and 1.
+3 bits can represent 2^3 = 8 different values (000 to 111 in binary, which is 0 to 7 in decimal).
+incresing power of 2 increases the range of values that can be represented exponentially.
+increasing the number of bits increases the range of values that can be represented exponentially.
+increasing power of 10 increases the range of values that can be represented linearly.
+
+in binary each digit represents a power of 2, starting from 2^0 on the right.
+
+100101 in binary = 1*2^5 + 0*2^4 + 0*2^3 + 1*2^2 + 0*2^1 + 1*2^0 = 32 + 0 + 0 + 4 + 0 + 1 = 37 in decimal
+
+if were gven a number say 19 
+19 in decimal = 1*10^1 + 9*10^0 = 10 + 9 = 19
+using division by 2 method to convert decimal to binary:
+19 / 2 = 9 remainder 1
+9 / 2 = 4 remainder 1
+4 / 2 = 2 remainder 0
+2 / 2 = 1 remainder 0
+1 / 2 = 0 remainder 1
+reading remainders from bottom to top gives us 10011 in binary  
+
+
+method 2 desending powers of 2:
+find the largest power of 2 less than or equal to 19
+2^4 = 16 is the largest power of 2 less than 19
+subtract 16 from 19, leaving 3
+next largest power of 2 less than or equal to 3 is 2^1 = 2
+subtract 2 from 3, leaving 1
+next largest power of 2 less than or equal to 1 is 2^0 = 1
+subtract 1 from 1, leaving 0
+we used 2^4, 2^1, and 2^0, so we place 1s in those positions and 0s elsewhere:
+19 in decimal = 10011 in binary
+
+ADDING TWO BINARY NUMBERS:
+  1011   (11 in decimal)
+0 + 0 = 0
+0 + 1 = 1
+1 + 0 = 1
+1 + 1 = 10 (write down 0, carry over 1)
+
+
+6 = 0110 because 0*2^3 + 1*2^2 + 1*2^1 + 0*2^0 = 0 + 4 + 2 + 0 = 6
+7 = 0111 because 0*2^3 + 1*2^2 + 1*2^1 + 1*2^0 = 0 + 4 + 2 + 1 = 7
+
+6 + 7 in binary:
+  0110
++ 0111
+-------
+    1101   (13 in decimal)
+
+
+    MULTIPLICATION IN BINARY:
+  0110   (6 in decimal)
+x 0111   (7 in decimal)
+-------
+  0110    (6 * 1)
+ 0000     (6 * 1, shifted one position to the left)
+0110      (6 * 1, shifted two positions to the left)
+-------
+ 11010    (42 in decimal)
+
+ tridium
+ ls
+ clang++ main.cpp -o main
+
+Computers (and most programming languages like C++) use a system called **two's complement** to represent negative integers in binary. It's the most common method because it makes addition, subtraction, and hardware design simple—no special rules needed for negative numbers.
+
+### Why Not Just Use a Sign Bit?
+There are older ways, but they're less efficient:
+
+- **Sign-magnitude**: Use the leftmost bit as a sign (0 = positive, 1 = negative), and the rest for the number's size.  
+  Example (8 bits):  
+  +5 → **00000101**  
+  -5 → **10000101**  
+  Problem: Two zeros (+0 = 00000000, -0 = 10000000), and addition/subtraction needs extra hardware logic.
+
+- **One's complement**: Flip all bits of the positive number for negative.  
+  -5 → flip 00000101 → **11111010**  
+  Still has +0 and -0, and subtraction often requires an "end-around carry."
+
+**Two's complement** fixes these issues: only one zero, and normal binary addition works for negatives too.
+
+### How Two's Complement Works (Simple Steps)
+To represent a negative number:
+1. Start with the **positive** version in binary (with the right number of bits, e.g., 8 bits).
+2. **Flip all bits** (0 → 1, 1 → 0) — this is one's complement.
+3. **Add 1** to the result.
+
+That's it! The leftmost bit becomes 1 for negatives automatically.
+
+### Example: -5 in 8-bit Two's Complement
+Positive 5 in binary (8 bits): **00000101**
+
+1. Flip bits: **11111010**
+2. Add 1: **11111010 + 1 = 11111011**
+
+So **-5 = 11111011** (in 8 bits).
+
+### Quick Examples (8 Bits)
+| Decimal | Binary (Two's Complement) | Explanation |
+|---------|----------------------------|-------------|
+| +5     | 00000101                  | Normal positive |
+| -5     | 11111011                  | Flip + add 1 |
+| +127   | 01111111                  | Max positive (8 bits) |
+| -128   | 10000000                  | Min (most negative) |
+| -1     | 11111111                  | Flip 00000001 → 11111110 +1 = 11111111 |
+| 0      | 00000000                  | Only one zero! |
+
+### How to Check If a Binary Number Is Negative
+- If the leftmost bit (MSB) is **1** → negative.
+- To find its value: Flip all bits and add 1 → get the positive magnitude, then put a minus sign.
+
+Example: 11111011  
+Flip: 00000100  
+Add 1: 00000101 → 5  
+So -5.
+
+### Why Computers Love Two's Complement
+- Addition works the same: -5 + 3 = 11111011 + 00000011 = 11111110 → which is -2.
+- No separate sign handling needed in hardware.
+- Range for n bits: from -2^(n-1) to +2^(n-1)-1 (e.g., 8 bits: -128 to +127).
+
+In your C++ programs, `int` uses two's complement (usually 32 bits on modern systems, so -2^31 to +2^31-1). You don't see the binary—you just write `-5` and the compiler handles it.
+
+
+
+
+### What is a bit?
+
+A **bit** is the smallest piece of information a computer uses.
+It can only be **one of two values**:
+
+* **0** (off)
+* **1** (on)
+
+Think of a bit like a **light switch**:
+
+* Off = 0
+* On = 1
+
+### Why only 0 and 1?
+
+Computers use electricity. It’s easiest and most reliable for them to tell the difference between:
+
+* **No electricity** → 0
+* **Electricity present** → 1
+
+### Bits working together
+
+One bit alone isn’t very useful, so computers group bits together.
+
+* **4 bits** → can represent 16 different values
+* **8 bits = 1 byte** → can represent 256 different values
+
+For example, with 8 bits:
+
+```
+00000000 = 0
+00000001 = 1
+00000010 = 2
+...
+11111111 = 255
+```
+
+### How bits make everything
+
+By combining bits, computers can represent:
+
+* **Numbers**
+* **Letters** (like A, B, C using codes such as ASCII)
+* **Images** (pixel colors)
+* **Sound** (audio samples)
+* **Programs**
+
+### Quick summary
+
+* A **bit** = 0 or 1
+* Bits are combined to store information
+* All computer data is built from bits
+
+
+step one - determine the no of bits
+figure out signed or unsigned
+- convert from decimal to unsigned binary 
+- if its a negative number, take absolute value and do the binary of the non negative number 
+and the conver the base and add 1 to convert it back to negative in binary 
+
+floating and double point numbers - follow IEEE 754 standard
+
+Fractions in binary:
+1/2 = 0.5, in binary 0.1
+1/4 = 0.25, in binary 0.01
+1/8 = 0.125, in binary 0.001
+1/10 = 0.1, in binary approx 0.000110011001
+1/3 = 0.3333..., in binary approx 0.0101010101... (repeating)
+
+sign bit - 1 bit: (-1)^b31 = (-1)^0 = positive, (-1)^1 = negative
+exponent - 8 bits: biased exponent, actual exponent = stored exponent - bias (127 for single precision)
+mantissa - 23 bits: fractional part, with an implicit leading 1
+value = (-1)^sign * 1.mantissa * 2^(exponent - bias)
+Fraction (24 bits including implicit leading 1, 23 bits explicitly stored): {1,1 + 2^-23, ... , 2 - 2^-23}
+
+The maximum 32 bit floating point number is approximately 3.4 x 10^38 which is 2 - 2^-23 * 2^128
+
+
+a type refers to a "category" of data that tells the compiler how to interpret the bits stored in memory. Different types have different sizes and behaviors.
+
+C++ has several built-in data types, including:
+1. bool: Represents boolean values (true or false). Typically uses 1 byte of memory.
+2. char: Represents a single character (like 'a', 'b', '1', etc.). Typically uses 1 byte of memory.
+3. int: Represents integer numbers (whole numbers without decimal points). Typically uses 4 bytes of memory.
+4. float: Represents single-precision floating-point numbers (numbers with decimal points). Typically uses 4 bytes of memory.
+5. double: Represents double-precision floating-point numbers (more precise than float). Typically uses 8 bytes of memory.
+
+
+
